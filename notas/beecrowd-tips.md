@@ -25,3 +25,17 @@ string a, b = Console.ReadLine().Split(' ');
 int a = int.Parse(dados[0]); // int a = 2
 int b = int.Parse(dados[1]); // int b = 3
 ```
+
+## Criando projeto CLI (Command Line Interface)
+
+checando dotnet:
+
+```bash
+dotnet --version
+```
+
+criando em .net6
+
+```bash
+dotnet new console -n NomeDoProjeto --framework net6.0
+```
