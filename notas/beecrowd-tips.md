@@ -34,7 +34,7 @@ checando dotnet:
 dotnet --version
 ```
 
-criando em .net6
+criando em .net6:
 
 ```bash
 dotnet new console -n NomeDoProjeto --framework net6.0
