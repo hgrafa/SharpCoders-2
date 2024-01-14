@@ -5,13 +5,19 @@ public class Program {
 
     int n = int.Parse(Console.ReadLine());
 
-    // a % b = resto de a divido por b
-    for(int val = 1; val <= 10000; val++) {
-      if(val%n == 2) {
-        Console.WriteLine(val);
-      }
-    }
+    // n = 1 -> nao existe
+    // n = 2 -> nao existe
+    // n = 3 -> 2 eh primeiro
+    // n > 3 -> 2 eh primeiro
 
-    13*? + 2
+    // n = 4 -> 2, 6, 10, 14
+
+    if(n <= 2) {
+      return;
+    }
+    
+    for(int i = 2; i <= 10000; i += n) {
+      Console.WriteLine(i);
+    }
   }
 }
