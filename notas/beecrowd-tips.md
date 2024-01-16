@@ -26,6 +26,13 @@ int a = int.Parse(dados[0]); // int a = 2
 int b = int.Parse(dados[1]); // int b = 3
 ```
 
+## Posicoes anteriores e posteriores em vetor
+
+Problema de borda.
+
+- checar até onde vai e garantir que não acessa posições indesejadas
+- borda falsa
+
 ## Criando projeto CLI (Command Line Interface)
 
 checando dotnet:
