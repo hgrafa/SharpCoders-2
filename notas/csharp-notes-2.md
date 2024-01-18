@@ -1,6 +1,6 @@
 # Funções
 
-##
+## Motivação
 
 Conjunto de passos bem definidos.
 
@@ -59,6 +59,139 @@ menção honrosa:
 - modularizacao/bloco de codigo
 - objetivo/resolve problemas
 - Legibilidade
+
+## Práticas interessantes
+
+### early return (retorno "adiantado")
+
+- tento retornar antes, e mantenho um caso padrao
+
+jeito antigo:
+
+```cs
+static boolean EhPar(int number) {
+  if(number%2 == 0)
+    return true;
+  else
+    return false;
+}
+```
+
+boa pratica do early return:
+
+```cs
+static boolean EhPar(int number) {
+  if(number%2 == 0)
+    return true;
+
+  return false;
+}
+```
+
+```cs
+static void Sacar(double quantia) {
+  if(ativa == true && saldo >= quantia) {
+    saldo -= quantia;
+  }
+}
+```
+
+refatorando...
+
+```cs
+static void Sacar(double quantia) {
+  if(!ativa)
+    throw new Exception("Conta inativa");
+
+  if(saldo < quantia)
+    throw new Exception("Saldo insuficiente");
+
+  if(!cpfValido)
+    throw new Exception("Cpf Invalido");
+
+  saldo -= quantia;
+}
+```
+
+se for multiplo de 3 = foo
+se for multiplo de 5 = boo
+se for multiplo de ambos = fooboo
+
+```cs
+public boolean IsMultipleOf(int number, int divisor) {
+  if(number%divisor != 0)
+    return false;
+
+  return true;
+}
+
+public static string TestFooBoo(int number) {
+  string aux = "";
+
+  if(IsMultipleOf(number, 3))
+    aux += "foo";
+
+  if(IsMultipleOf(number, 5))
+    aux += "boo";
+
+  return aux;
+}
+
+Console.WriteLine(TestFooBoo(int.Parse(Console.ReadLine())));
+```
+
+codigo ruim = dificil de extender, entender e mudar
+
+### switch-case
+
+```cs
+string sinal = "vermelho";
+
+switch(sinal) {
+  case "vermelho":
+    Console.WriteLine("parar");
+    break;
+  case "amarelo":
+    Console.WriteLine("atencao");
+  case "verde":
+    Console.WriteLine("passar");
+    break;
+  default: // padrao
+    Console.WriteLine("digija com cuidado");
+    break;
+}
+```
+
+```cs
+static void IsConsonant(char c) {
+  swith(c) {
+    case 'a':
+    case 'e':
+    case 'i':
+    case 'o':
+    case 'u':
+      return true;
+  }
+
+  return false;
+}
+```
+
+## Predencia do ++/--
+
+variavel++ = primeiro entrega o valor e depois aumenta
+++variavel = primeiro aumenta e depois entrega o valor
+
+```cs
+int x = 10;
+
+Console.WriteLine(++x); // 11
+Console.WriteLine(x); // 11
+
+int y = 10;
+Console.WriteLine(y++); // 10
+Console.WriteLine(y); // 11
+```
 
 ## Fibonacci
 
