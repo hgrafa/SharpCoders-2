@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+﻿using CRUD_users.Entities;
 
 namespace CRUD_users;
 
@@ -15,81 +15,38 @@ public class Program {
     Console.Write("Digite a opcao desejada: ");
   }
 
-  static void CriarUsuario(int emptyPosition, string[] usernames, string[] emails, string[] passwords) {
-    Console.Write("Digite seu username: ");
-    usernames[emptyPosition] = Console.ReadLine();
-
-    Console.Write("Digite seu email: ");
-    emails[emptyPosition] = Console.ReadLine();
-
-    Console.Write("Digite sua senha: ");
-    passwords[emptyPosition] = Console.ReadLine();
-  }
+  // single responsability principle
 
   public static void Main () {
+    User victor = new User();
 
-    int TOTAL_SIZE = 1000, size = 0;
+    User eu = new User{
+      Id = int.Parse(Console.ReadLine()!),
+      Email = Console.ReadLine()!,
+      Username =  Console.ReadLine()!,
+      Password = Console.ReadLine()!
+    };
 
-    string[] usernames = new string[TOTAL_SIZE];
-    string[] emails = new string[TOTAL_SIZE];
-    string[] passwords = new string[TOTAL_SIZE];
+    // ImprimeUsuario(eu);
 
-    // CriarUsuario(emptyPosition, usernames, emails, passwords);
-    // size++;
+    Console.WriteLine(eu);
+    Console.WriteLine(victor);
 
-    // 6 = 0, 1, 2, 3, 4, 5, _
-    // CriarUsuario(size++, usernames, emails, passwords);
+    // int option;
 
-    // TODO: reutilizar isso quando for listar todos
-    // for(int i = 0; i < size; i++) {
-    //   Console.WriteLine("-----------------");
-    //   Console.WriteLine(usernames[i]);
-    //   Console.WriteLine(emails[i]);
-    //   Console.WriteLine(passwords[i]);
-    //   Console.WriteLine("-----------------");
-    // }
-
-    // Comparativo
-    // while pra menu = mostrarMenu verifico&faço mostrarMenu ...
-    // do...while = fazendo verifica fazendo
-
-    // ShowMenu();
-    // int option = int.Parse(Console.ReadLine());
-
-    // while(option != 0) {
-
-    //   switch(option) {
-    //     case 1:
-    //       CriarUsuario(size++, usernames, emails, passwords);
-    //       break;
-    //     default:
-    //       Console.WriteLine("Digite uma opcao valida!");
-    //       break;
-    //   }
-
+    // do {
     //   ShowMenu();
     //   option = int.Parse(Console.ReadLine());
-    // }
 
-    int option;
-
-    do {
-      ShowMenu();
-      option = int.Parse(Console.ReadLine());
-
-      switch(option) {
-        case 0:
-          Console.WriteLine("valeu, ate a proxima!");
-          break;
-        case 1:
-          CriarUsuario(size++, usernames, emails, passwords);
-          break;
-        default:
-          Console.WriteLine("Digite uma opcao valida!");
-          break;
-      }
+    //   switch(option) {
+    //   }
             
-    } while(option != 0);
+    // } while(option != 0);
+
+
   }
 
 }
+
+
+// Program.ImprimeUsuario(new User())
