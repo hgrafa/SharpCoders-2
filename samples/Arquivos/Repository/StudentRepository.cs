@@ -6,21 +6,6 @@ public class StudentRepository
 {
   private readonly string filepath = @"arquivos/students.csv";
 
-  private Student ParseStudentFromLine(string line)
-  {
-    // line = "2,Anya,2.85,Salve Regina University"
-    // line.split = ["2" , "Anya", "2.85", "Salve Regina University"]
-    string[] studentData = line.Split(',');
-
-    return new()
-    {
-      Id = int.Parse(studentData[0]),
-      FirstName = studentData[1],
-      Score = double.Parse(studentData[2]),
-      University = studentData[3]
-    };
-  }
-
   public List<Student> FindAll()
   {
     List<Student> students = new();
@@ -32,7 +17,7 @@ public class StudentRepository
 
     foreach (string line in lines)
     {
-      students.Add(ParseStudentFromLine(line));
+      students.Add(Student.FromCsv(line));
     }
 
     return students;
@@ -47,16 +32,23 @@ public class StudentRepository
 
     foreach (string line in lines)
     {
-      Student currentStudent = ParseStudentFromLine(line);
+      Student currentStudent = Student.FromCsv(line);
 
-      if(currentStudent.Id == id)
+      if (currentStudent.Id == id)
         return currentStudent;
     }
 
     return null;
   }
 
-  // public bool Save(Student student) {
+  public bool Save(Student student)
+  {
 
-  // }
+    if (!File.Exists(filepath))
+      return false;
+
+    using StreamWriter writer = File.AppendText(filepath);
+    writer.WriteLine(student.ToCsv());
+    return true;
+  }
 }

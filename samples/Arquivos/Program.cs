@@ -32,6 +32,13 @@ using Arquivos.Repository;
 
 StudentRepository studentRepository = new();
 
+studentRepository.Save(new() {
+  Id = 41,
+  FirstName = "Hugo",
+  Score = 8.0,
+  University = "UFRJ"
+});
+
 studentRepository
   .FindAll()
   .ForEach(student => Console.WriteLine(student));

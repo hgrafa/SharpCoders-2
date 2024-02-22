@@ -21,6 +21,10 @@ public class Student
       };
    }
 
+   public string ToCsv() {
+    return $"{Id},{FirstName},{Score},{University}";
+   }
+
     public override string ToString()
     {
         return $"Id: {Id}, FirstName: {FirstName}, Score:{Score}, University: {University}";
