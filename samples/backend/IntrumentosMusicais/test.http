@@ -1,0 +1,16 @@
+@API_URL = https://localhost:7200/api/hello
+
+###
+
+GET {{API_URL}}/person
+
+###
+
+POST {{API_URL}}
+Content-Type: application/json
+
+{
+  "name" : "Pedro",
+  "age": 23,
+  "height": 1.8
+}
