@@ -12,32 +12,41 @@ public class UserController : ControllerBase
   // pegar todas = GET /users
   // pegar uma pessoa = GET /users/1
 
-  public List<User> users = new() {
+  public static List<User> users = new() {
     new() {
       Id = 1,
       Name = "Pedro",
       Email = "pedro@gmail.com",
-      Age = 30
+      Password = "pedro123"
     },
     new() {
       Id = 2,
       Name = "Martha",
       Email = "martha@gmail.com",
-      Age = 25
+      Password = "martha123"
     }
   };
 
 
   [HttpGet]
-  public ActionResult<List<User>> GetUsers() {
+  public IActionResult GetUsers() {
     return Ok(users);
   }
 
   [HttpGet("{id}")]
-  public ActionResult<User?> GetUserById(int id) {
+  [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(User))]
+  [ProducesResponseType(StatusCodes.Status404NotFound)]
+  public IActionResult GetUserById(int id) {
     User? user = users.Find((user) => user.Id == id);
 
     return user != null ? Ok(user) : NotFound();
+  }
+
+  [HttpPost]
+  public IActionResult CreateUser(User user) {
+    users.Add(user);
+
+    return Ok("user created!");
   }
 
 }
