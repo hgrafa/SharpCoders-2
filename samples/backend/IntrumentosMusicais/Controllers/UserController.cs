@@ -1,10 +1,11 @@
-using IntrumentosMusicais.Model;
+using IntrumentosMusicais.Domain.DTO;
+using IntrumentosMusicais.Domain.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IntrumentosMusicais.Controllers;
 
 [ApiController] // escutar pedidos
-[Route("/users")] // mapeando os endpoints(item do pedido)
+[Route("users")] // mapeando os endpoints(item do pedido)
 public class UserController : ControllerBase
 {
   
@@ -30,20 +31,43 @@ public class UserController : ControllerBase
 
   [HttpGet]
   public IActionResult GetUsers() {
-    return Ok(users);
+
+    var userProfiles = users.Select(user => new UserProfileDto() {
+      Id = user.Id,
+      Name = user.Name,
+      Email = user.Email
+    });
+
+    return Ok(userProfiles);
   }
 
   [HttpGet("{id}")]
-  [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(User))]
+  [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserProfileDto))]
   [ProducesResponseType(StatusCodes.Status404NotFound)]
   public IActionResult GetUserById(int id) {
     User? user = users.Find((user) => user.Id == id);
 
-    return user != null ? Ok(user) : NotFound();
+    if(user == null)
+      return NotFound();
+    
+    UserProfileDto userProfile = new() {
+      Id = user.Id,
+      Name = user.Name,
+      Email = user.Email
+    };
+
+    return Ok(userProfile);
   }
 
-  [HttpPost]
-  public IActionResult CreateUser(User user) {
+  [HttpPost("register")]
+  public IActionResult Register(User user) {
+    users.Add(user);
+
+    return Ok("user created!");
+  }
+
+  [HttpPost("login")]
+  public IActionResult Login(User user) {
     users.Add(user);
 
     return Ok("user created!");
