@@ -32,11 +32,7 @@ public class UserController : ControllerBase
       return NoContent();
     }
 
-    var usersResponse = users.Select(user => new UserResponseDto {
-      Id = user.Id,
-      Username = user.Username,
-      Email = user.Email
-    });
+    var usersResponse = users.Select(user => new UserResponseDto(user));
 
     return Ok(usersResponse);
   }
@@ -52,12 +48,8 @@ public class UserController : ControllerBase
 
     // 5 elementos => index 0 ao index 4
 
-    User user = new() {
-      Id = users.Count + 1,
-      Email = userRequest.Email,
-      Username = userRequest.Username,
-      Password = userRequest.Password
-    };
+    User user = userRequest.ToUser();
+    user.Id = users.Count + 1;
 
     users.Add(user);
     return Created();

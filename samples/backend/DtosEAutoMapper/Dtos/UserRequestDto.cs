@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using DtosEAutoMapper.Models;
 
 namespace DtosEAutoMapper.Dtos;
 
@@ -14,5 +15,14 @@ public class UserRequestDto
    [Required]
    [MinLength(8)]
    public string? Password { get; set; }
+
+   // extension method
+   public User ToUser() {
+      return new User() {
+         Email = Email,
+         Username = Username,
+         Password = Password
+      };
+   }
 
 }
