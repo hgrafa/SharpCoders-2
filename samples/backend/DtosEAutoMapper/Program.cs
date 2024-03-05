@@ -7,6 +7,9 @@ builder.Services.AddControllers(); // Registra e Procura controladores na aplica
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// automapper
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,3 +25,4 @@ app.MapControllers(); // mapeia os controladores quando a aplicacao iniciar
 
 app.Run();
 
+// ORM = Object Relational Mapper
