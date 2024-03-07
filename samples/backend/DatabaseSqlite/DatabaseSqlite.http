@@ -1,0 +1,19 @@
+@DatabaseSqlite_HostAddress = http://localhost:5090
+
+###
+
+GET {{DatabaseSqlite_HostAddress}}/atendimentos
+Accept: application/json
+
+###
+
+POST {{DatabaseSqlite_HostAddress}}/atendimentos
+Content-Type: application/json
+
+{
+  "id": 1,
+  "nome": "Joao da Silva",
+  "relato": "preciso atendimento ortopedia",
+  "estaResolvido": false,
+  "desejaRetorno": true
+}
