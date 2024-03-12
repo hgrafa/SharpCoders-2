@@ -11,4 +11,5 @@ public class AppDbContext : DbContext
     
     public DbSet<Atendimento> Atendimentos { get; set; }
     public DbSet<Endereco> Enderecos { get; set; }
+    public DbSet<Funcionario> Funcionarios { get; set; }
 }

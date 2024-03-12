@@ -3,6 +3,7 @@ using System;
 using DatabaseSqlite.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatabaseSqlite.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240311225244_CreateFuncionario")]
+    partial class CreateFuncionario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.2");
@@ -103,7 +106,7 @@ namespace DatabaseSqlite.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Funcionarios");
+                    b.ToTable("Funcionario");
                 });
 
             modelBuilder.Entity("DatabaseSqlite.Domain.Model.Atendimento", b =>

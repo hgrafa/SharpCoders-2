@@ -17,3 +17,19 @@ Content-Type: application/json
   "estaResolvido": false,
   "desejaRetorno": true
 }
+
+
+###
+
+POST {{DatabaseSqlite_HostAddress}}/funcionarios
+Content-Type: application/json
+
+{
+  "nome": "Pedro Matheus"
+}
+
+
+###
+
+GET {{DatabaseSqlite_HostAddress}}/funcionarios
+Accept: application/json
