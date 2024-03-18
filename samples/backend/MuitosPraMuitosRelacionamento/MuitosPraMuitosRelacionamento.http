@@ -1,6 +1,22 @@
 @MuitosPraMuitosRelacionamento_HostAddress = http://localhost:5004
 
-GET {{MuitosPraMuitosRelacionamento_HostAddress}}/weatherforecast/
+
+###
+
+GET {{MuitosPraMuitosRelacionamento_HostAddress}}/alunos
 Accept: application/json
 
 ###
+
+GET {{MuitosPraMuitosRelacionamento_HostAddress}}/alunos?s=3&p=1
+Accept: application/json
+
+###
+
+POST {{MuitosPraMuitosRelacionamento_HostAddress}}/alunos
+content-type: application/json
+
+{
+  "nome" : "beatriz silva",
+  "email" : "beatriz.silva@gmail.com"
+}

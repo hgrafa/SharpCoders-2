@@ -14,9 +14,4 @@ public class CursosDbContext : DbContext
     public DbSet<Curso> Cursos { get; set; }
     public DbSet<Matricula> Matriculas { get; set; }
 }
-// {
-//     "id": 5,
-//     "nome": "js",
-//     "descricao": "aprenda js",
-//     "alunos": "http://localhost:5700/alunos?cursoId=5"
-// }
+
