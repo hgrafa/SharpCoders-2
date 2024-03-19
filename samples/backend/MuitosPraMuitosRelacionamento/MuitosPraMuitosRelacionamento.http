@@ -20,3 +20,52 @@ content-type: application/json
   "nome" : "beatriz silva",
   "email" : "beatriz.silva@gmail.com"
 }
+
+###
+
+POST {{MuitosPraMuitosRelacionamento_HostAddress}}/cursos
+content-type: application/json
+
+{
+  "nome" : "computacao"
+}
+
+###
+
+POST {{MuitosPraMuitosRelacionamento_HostAddress}}/matriculas
+content-type: application/json
+
+{
+  "alunoId" : 1,
+  "cursoId" : 1
+}
+
+###
+
+GET {{MuitosPraMuitosRelacionamento_HostAddress}}/matriculas/1/1
+content-type: application/json
+
+{
+  "alunoId" : 1,
+  "cursoId" : 1
+}
+
+###
+
+PUT {{MuitosPraMuitosRelacionamento_HostAddress}}/alunos/2
+content-type: application/json
+
+{
+  "nome" : "aluno atualizado",
+  "email" : "atualizado.silva@gmail.com"
+}
+
+###
+
+DELETE {{MuitosPraMuitosRelacionamento_HostAddress}}/alunos/2
+content-type: application/json
+
+{
+  "nome" : "aluno atualizado",
+  "email" : "atualizado.silva@gmail.com"
+}

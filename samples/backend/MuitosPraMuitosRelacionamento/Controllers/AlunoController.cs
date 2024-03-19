@@ -60,4 +60,36 @@ public class AlunoController : ControllerBase
     return CreatedAtAction(nameof(GetById), new { alunoSalvo.Id }, alunoSalvo);
   }
 
+  [HttpPut("{id:int}")]
+  public async Task<IActionResult> Update(AlunoUpdateDto alunoUpdateDto, int id) {
+    var alunoAtualizacoes = _mapper.Map<Aluno>(alunoUpdateDto);
+
+    var alunoParaAtualizar = await _dbContext.Alunos.FindAsync(id);
+
+    if(alunoParaAtualizar is null) 
+      return NotFound();
+
+    alunoParaAtualizar.Nome = alunoAtualizacoes.Nome;
+    alunoParaAtualizar.Email = alunoAtualizacoes.Email;
+
+    _dbContext.Alunos.Update(alunoParaAtualizar);
+    await _dbContext.SaveChangesAsync();
+
+    return Ok("aluno atualizado");
+  }
+
+  [HttpDelete("{id:int}")]
+  public async Task<IActionResult> Delete(int id) {
+
+    var alunoParaDeletar = _dbContext.Alunos.Find(id);
+
+    if(alunoParaDeletar is null) 
+      return NotFound();
+
+    _dbContext.Remove(alunoParaDeletar);
+    await _dbContext.SaveChangesAsync();
+
+    return Ok("aluno deletado");
+  }
+
 }

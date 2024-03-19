@@ -9,6 +9,8 @@ public class AlunoProfile : Profile
 
   public AlunoProfile() {
     CreateMap<AlunoCreateDto, Aluno>();
+    CreateMap<AlunoUpdateDto, Aluno>();
+    CreateMap<Aluno, AlunoReadDto>();
   }
    
 }

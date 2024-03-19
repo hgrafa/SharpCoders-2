@@ -18,10 +18,8 @@ builder.Services.
 var defaultConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<CursosDbContext>(options => {
-    options.UseSqlite(defaultConnectionString);
+    options.UseLazyLoadingProxies().UseSqlite(defaultConnectionString);
 });
-
-builder.Services.AddScoped(typeof(IAlunoRepository), typeof(AlunoRepository));
 
 var app = builder.Build();
 
