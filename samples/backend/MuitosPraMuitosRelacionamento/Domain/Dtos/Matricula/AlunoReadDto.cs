@@ -1,13 +1,8 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace MuitosPraMuitosRelacionamento.Domain.Dtos;
 
-public class AlunoUpdateDto
+public class AlunoMatriculaReadDto
 {
-
+  public int Id { get; set; }
   public string Nome { get; set; }
-
-  [EmailAddress]
   public string Email { get; set; }
-
 }

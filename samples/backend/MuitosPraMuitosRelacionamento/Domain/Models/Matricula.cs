@@ -1,7 +1,6 @@
 namespace MuitosPraMuitosRelacionamento.Domain.Models;
 
-public class Matricula : Entity
-{
+public class Matricula {
 
   public int AlunoId { get; set; }
   public virtual Aluno Aluno { get; set; }
@@ -10,3 +9,4 @@ public class Matricula : Entity
   public virtual Curso Curso { get; set; }
 
 }
+

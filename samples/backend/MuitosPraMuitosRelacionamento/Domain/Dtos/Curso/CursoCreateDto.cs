@@ -1,4 +1,4 @@
-namespace MuitosPraMuitosRelacionamento.Domain.Dtos;
+namespace MuitosPraMuitosRelacionamento.Domain.Dtos.Curso;
 
 public class CursoCreateDto
 {

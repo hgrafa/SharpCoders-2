@@ -2,7 +2,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MuitosPraMuitosRelacionamento.Domain.Context;
-using MuitosPraMuitosRelacionamento.Domain.Dtos;
+using MuitosPraMuitosRelacionamento.Domain.Dtos.Curso;
 using MuitosPraMuitosRelacionamento.Domain.Models;
 
 namespace MuitosPraMuitosRelacionamento.Controllers;

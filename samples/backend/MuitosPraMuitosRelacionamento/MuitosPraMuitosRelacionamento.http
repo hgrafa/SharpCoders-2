@@ -8,6 +8,16 @@ Accept: application/json
 
 ###
 
+GET http://localhost:5004/matriculas/aluno/1
+Accept: application/json
+
+###
+
+DELETE  http://localhost:5004/alunos/1
+Accept: application/json
+
+###
+
 GET {{MuitosPraMuitosRelacionamento_HostAddress}}/alunos?s=3&p=1
 Accept: application/json
 
@@ -37,18 +47,13 @@ content-type: application/json
 
 {
   "alunoId" : 1,
-  "cursoId" : 1
+  "cursoId" : 2
 }
 
 ###
 
-GET {{MuitosPraMuitosRelacionamento_HostAddress}}/matriculas/1/1
-content-type: application/json
+GET {{MuitosPraMuitosRelacionamento_HostAddress}}/matriculas
 
-{
-  "alunoId" : 1,
-  "cursoId" : 1
-}
 
 ###
 

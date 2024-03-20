@@ -1,5 +1,5 @@
 using AutoMapper;
-using MuitosPraMuitosRelacionamento.Domain.Dtos;
+using MuitosPraMuitosRelacionamento.Domain.Dtos.Curso;
 using MuitosPraMuitosRelacionamento.Domain.Models;
 
 namespace MuitosPraMuitosRelacionamento.Domain.Profiles;

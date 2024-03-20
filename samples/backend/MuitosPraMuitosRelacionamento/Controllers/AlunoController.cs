@@ -2,9 +2,8 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MuitosPraMuitosRelacionamento.Domain.Context;
-using MuitosPraMuitosRelacionamento.Domain.Dtos;
+using MuitosPraMuitosRelacionamento.Domain.Dtos.Aluno;
 using MuitosPraMuitosRelacionamento.Domain.Models;
-using MuitosPraMuitosRelacionamento.Infra.Repository;
 
 namespace MuitosPraMuitosRelacionamento.Controllers;
 
@@ -34,7 +33,10 @@ public class AlunoController : ControllerBase
     var offset = page * size;
 
     var alunos = await _dbContext.Alunos.Skip(offset).Take(size).ToListAsync();
-    return Ok(alunos);
+
+    var alunosResponse = alunos.Select(_mapper.Map<AlunoReadDto>);
+
+    return Ok(alunosResponse);
   }
 
   [HttpGet("{id:int}")]
@@ -44,7 +46,9 @@ public class AlunoController : ControllerBase
     if(buscaAluno == null)
       return NotFound();
     
-    return Ok(buscaAluno);
+    var alunosResponse = _mapper.Map<AlunoReadDto>(buscaAluno);
+
+    return Ok(alunosResponse);
 
   }
 
@@ -56,8 +60,9 @@ public class AlunoController : ControllerBase
     await _dbContext.SaveChangesAsync();
 
     var alunoSalvo = entityEntry.Entity;
+    var alunosResponse = _mapper.Map<AlunoReadDto>(alunoSalvo);
 
-    return CreatedAtAction(nameof(GetById), new { alunoSalvo.Id }, alunoSalvo);
+    return CreatedAtAction(nameof(GetById), new { alunoSalvo.Id }, alunosResponse);
   }
 
   [HttpPut("{id:int}")]

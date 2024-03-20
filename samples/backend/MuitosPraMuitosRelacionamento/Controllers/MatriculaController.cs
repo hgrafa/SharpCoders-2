@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using MuitosPraMuitosRelacionamento.Domain.Context;
 using MuitosPraMuitosRelacionamento.Domain.Dtos;
 using MuitosPraMuitosRelacionamento.Domain.Models;
-using MuitosPraMuitosRelacionamento.Infra.Repository;
 
 namespace MuitosPraMuitosRelacionamento.Controllers;
 
@@ -29,12 +28,31 @@ public class MatriculaController : ControllerBase
 
     var offset = page * size;
 
-    var alunos = await _dbContext.Alunos.Skip(offset).Take(size).ToListAsync();
-    return Ok(alunos);
+    var matriculas = await _dbContext.Matriculas.Skip(offset).Take(size).ToListAsync();
+    
+    var matriculasResponse = matriculas.Select(_mapper.Map<MatriculaReadDto>);
+
+    return Ok(matriculasResponse);
   }
 
-  [HttpGet("{alunoId}/{cursoId}")]
-  public async Task<IActionResult> GetByAlunoECurso(int alunoId, int cursoId) {
+  
+  [HttpGet("aluno/{alunoId}")]
+  public async Task<IActionResult> GetByAlunoECurso(int alunoId) {
+    var matriculas = await _dbContext
+      .Matriculas
+      .Where((matricula) => matricula.AlunoId == alunoId)
+      .ToListAsync();
+
+    if(matriculas.Count == 0)
+      return NotFound();
+
+    var matriculasResponse = matriculas.Select(_mapper.Map<MatriculaReadDto>);
+
+    return Ok(matriculasResponse);
+  }
+
+  [HttpGet("{alunoId:int}/{cursoId:int}")]
+  public async Task<IActionResult> GetByAlunoECurso([FromRoute]int alunoId, [FromRoute]int cursoId) {
     var matricula = _dbContext
       .Matriculas
       .FirstAsync((matricula) => matricula.AlunoId == alunoId && matricula.CursoId == cursoId);
@@ -42,7 +60,10 @@ public class MatriculaController : ControllerBase
     if(matricula == null)
       return NotFound();
 
-    return Ok(matricula);
+    var matriculaResponse = _mapper.Map<MatriculaReadDto>(matricula);
+
+
+    return Ok(matriculaResponse);
   }
 
   [HttpPost]
@@ -53,16 +74,17 @@ public class MatriculaController : ControllerBase
     await _dbContext.SaveChangesAsync();
 
     var matricula = entityEntry.Entity;
+    var matriculaResponse = _mapper.Map<MatriculaReadDto>(matricula);
 
     return CreatedAtAction(
       nameof(GetByAlunoECurso), 
       new { alunoId = matricula.AlunoId, cursoId = matricula.CursoId }, 
-      matricula
+      matriculaResponse
     );
   }
 
   [HttpPut("{id:int}")]
-  public async Task<IActionResult> Update(AlunoUpdateDto alunoUpdateDto, int id) {
+  public async Task<IActionResult> Update(int id) {
     throw new NotImplementedException();
   }
 
@@ -72,3 +94,4 @@ public class MatriculaController : ControllerBase
   }
 
 }
+

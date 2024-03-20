@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace MuitosPraMuitosRelacionamento.Domain.Dtos;
+namespace MuitosPraMuitosRelacionamento.Domain.Dtos.Aluno;
 
 public class AlunoCreateDto
 {
