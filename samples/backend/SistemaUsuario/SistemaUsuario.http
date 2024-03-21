@@ -1,0 +1,13 @@
+@SistemaUsuario_HostAddress = http://localhost:5026
+
+POST {{SistemaUsuario_HostAddress}}/users
+content-type: application/json
+Accept: application/json
+
+
+{
+  "email": "maria@example.com",
+  "userName": "maria123",
+  "password": "Maria#1234",
+  "passwordConfirmation": "Maria#1234"
+}
