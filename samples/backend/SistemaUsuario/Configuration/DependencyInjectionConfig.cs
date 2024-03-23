@@ -13,6 +13,7 @@ public static class DependencyInjectionConfig
   public static IServiceCollection AddServicesLayer(this IServiceCollection services) {
 
     services.AddScoped<UserService>();
+    services.AddScoped<TokenService>();
 
     return services;
   }

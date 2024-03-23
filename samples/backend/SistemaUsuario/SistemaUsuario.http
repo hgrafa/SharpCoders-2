@@ -1,13 +1,33 @@
 @SistemaUsuario_HostAddress = http://localhost:5026
 
-POST {{SistemaUsuario_HostAddress}}/users
+
+POST {{SistemaUsuario_HostAddress}}/users/register
 content-type: application/json
 Accept: application/json
 
 
 {
-  "email": "maria@example.com",
-  "userName": "maria123",
-  "password": "Maria#1234",
-  "passwordConfirmation": "Maria#1234"
+  "email": "pedro@example.com",
+  "userName": "pedro123",
+  "password": "Pedro#1234",
+  "passwordConfirmation": "Pedro#1234"
 }
+
+### 
+
+@name = login
+POST {{SistemaUsuario_HostAddress}}/users/login HTTP/1.1
+content-type: application/json
+Accept: application/json
+
+
+{
+  "userName": "pedro123",
+  "password": "Pedro#1234"
+}
+
+###
+
+GET {{SistemaUsuario_HostAddress}}/dados/pedro123
+Accept: application/json 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InBlZHJvMTIzIiwiaWQiOiJkMjRmYjk5MC1mYTlkLTRiZGEtYTgzNy0zNWNlNzA3NGQ3ZGYiLCJsb2dpblRpbWVTdGFtcCI6IjMvMjIvMjAyNCAxMTowMjozOCBQTSIsImV4cCI6MTcxMTE0ODYxOH0.1OLaS9MpBH9Z9iyKY27JfxbqqVPYAo9ci6SNs6L4GZw

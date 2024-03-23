@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NamespaceName;
 using SistemaUsuario.Domain.Dto;
 using SistemaUsuario.Domain.Model;
 using SistemaUsuario.Infra.Services;
@@ -28,9 +29,12 @@ public class UserController : ControllerBase
    }
 
    [HttpPost("login")]
+   [ProducesResponseType(type: typeof(UserTokenResponseDto), statusCode: StatusCodes.Status200OK)]
    public async Task<IActionResult> Login(
       UserLoginDto userLoginDto
    ) {
-      return Ok("not implemented");
+      var tokenResponse = await _userService.Login(userLoginDto);
+
+      return Ok(tokenResponse);
    }
 }

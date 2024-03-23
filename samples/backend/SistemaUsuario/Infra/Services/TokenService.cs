@@ -24,7 +24,7 @@ public class TokenService
         new("loginTimeStamp", DateTime.UtcNow.ToString()),
       };
 
-      var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("efdhno120j01m12hef"));
+      var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("efd1290u12u2109u2hno120j01m12hef"));
 
       var loginCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
