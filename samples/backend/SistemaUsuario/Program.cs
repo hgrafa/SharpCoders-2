@@ -37,15 +37,14 @@ builder.Services.AddAuthentication(options => {
 }).AddJwtBearer(options => {
     options.TokenValidationParameters = new TokenValidationParameters() {
         ValidateIssuerSigningKey = true,
-        IssuerSigningKey =  new SymmetricSecurityKey(Encoding.UTF8.GetBytes("efd1290u12u2109u2hno120j01m12hef")),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("efd1290u12u2109u2hno120j01m12hef")),
         ClockSkew = TimeSpan.Zero,
         ValidateAudience = false,
-        ValidateIssuer = false
+        ValidateIssuer = false,
     };
 });
 
-builder.Services.AddAuthorization(auth =>
-{
+builder.Services.AddAuthorization(auth => {
     auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
         .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
         .RequireAuthenticatedUser()
@@ -65,8 +64,7 @@ builder.Services.AddServicesLayer();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+if (app.Environment.IsDevelopment()) {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
